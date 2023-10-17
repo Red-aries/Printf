@@ -11,7 +11,7 @@
  * @size: Size specifier
  * Return: Number of chars printed.
  */
-int o_print_pointer(va_list types, char buffer[], int flags,
+int print_pointer(va_list types, char buffer[], int flags,
 							int width, int precision, int size)
 {
 	char extra_c = 0, padd = ' ';
@@ -48,7 +48,7 @@ int o_print_pointer(va_list types, char buffer[], int flags,
 	ind++;
 
 	/*return (write(1, &buffer[i], BUFF_SIZE - i - 1));*/
-	return (o_write_pointer(buffer, ind, length,
+	return (write_pointer(buffer, ind, length,
 		width, flags, padd, extra_c, padd_start));
 }
 
@@ -63,7 +63,7 @@ int o_print_pointer(va_list types, char buffer[], int flags,
  * @size: Size specifier
  * Return: Number of chars to print
  */
-int o_print_non_printable(va_list types, char buffer[], int flags,
+int print_non_printable(va_list types, char buffer[], int flags,
 					int width, int precision, int size)
 {
 	int i = 0, offset = 0;
@@ -82,7 +82,7 @@ int o_print_non_printable(va_list types, char buffer[], int flags,
 		if (o_is_printable(str[i]))
 			buffer[i + offset] = str[i];
 		else
-			offset += o_append_hexa_code(str[i], buffer, i + offset);
+			offset += append_hexa_code(str[i], buffer, i + offset);
 
 		i++;
 	}
@@ -103,7 +103,7 @@ int o_print_non_printable(va_list types, char buffer[], int flags,
  * Return: Numbers of chars to be printed
  */
 
-int o_print_reverse(va_list types, char buffer[], int flags, int width,
+int print_reverse(va_list types, char buffer[], int flags, int width,
 				int precision, int size)
 {
 	char *str;
@@ -145,7 +145,7 @@ int o_print_reverse(va_list types, char buffer[], int flags, int width,
  * @size: Size specifier
  * Return: Numbers of chars to be  printed
  */
-int o_print_rot13string(va_list types, char buffer[], int flags,
+int print_rot13string(va_list types, char buffer[], int flags,
 					int width, int precision, int size)
 {
 	char x;
